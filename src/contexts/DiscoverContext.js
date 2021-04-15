@@ -17,8 +17,9 @@ export function DiscoverProvider({ children }) {
             localStorage.setItem('accessToken', data.access_token);
             setLoading(false);
         } catch (error) {
-            console.log(error);
-            setError(error?.error);
+            setError(error?.response?.data?.error_description ?
+                error.response.data.error_description :
+                'Network Error');
             setLoading(false);
         }
     }
